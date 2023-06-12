@@ -46,4 +46,5 @@ app.get('/webhook', (req: Request, res: Response) => {
 // Uruchomienie serwera
 app.listen(PORT, () => {
   console.log(`Serwer uruchomiony na porcie ${PORT}`);
+  console.log("test");
 });
