@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import { json } from 'body-parser';
-import { sendMessage } from './SendMess';
+import { kła, sendMessage } from './SendMess';
 
 const app = express();
 const PORT = 3000;
@@ -19,6 +19,7 @@ app.post('/webhook', (req: Request, res: Response) => {
       const webhookEvent = entry.messaging[0];
       console.log(webhookEvent);
       console.log("huj body webhook")
+      kła()
 
       // Obsługa przychodzących zdarzeń z Facebook Messenger
       if (webhookEvent.message) {

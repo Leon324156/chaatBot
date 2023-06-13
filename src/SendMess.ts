@@ -33,3 +33,9 @@ export function sendMessage(recipientId: string, messageText: string, PAGE_ACCES
       console.error('Error sending message:', error.response.data);
     });
 }
+
+
+export function kła()
+{
+    console.log("kła");
+}
