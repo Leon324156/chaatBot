@@ -27,7 +27,7 @@ app.post('/webhook', (req: Request, res: Response) => {
 
 // Endpoint weryfikacyjny
 app.get('/webhook', (req: Request, res: Response) => {
-  const VERIFY_TOKEN = '69420';
+  const VERIFY_TOKEN = '14032001';
   
   const mode = req.query['hub.mode'];
   const token = req.query['hub.verify_token'];
