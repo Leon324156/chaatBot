@@ -35,7 +35,3 @@ export function sendMessage(recipientId: string, messageText: string, PAGE_ACCES
 }
 
 
-export function kła()
-{
-    console.log("kła");
-}

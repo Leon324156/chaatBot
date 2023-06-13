@@ -1,12 +1,12 @@
 import express, { Request, Response } from 'express';
 import { json } from 'body-parser';
-import { kła, sendMessage } from './SendMess';
-import axios from 'axios';
+import { sendMessage } from './SendMess';
+
 
 const app = express();
 const PORT = 3000;
 const VERIFY_TOKEN = '69420'; // Twój weryfikacyjny token
-const PAGE_ACCESS_TOKEN = 'EAAcZC0M1Au8oBAP6Ai7SDVCJpCtKTJ8e8iZC3vEPUPzXd9bIJkqA0YCiqEfopOfJHQP8FwScz8022iPnHJvcuJTZBYW2t023IZBjHrRqTw7CbPuIvBTOcxMrTPNdjkuRZAoZAWFiZBOdovZCslaiVcuzmTptPtgignaUUPVleWnQMtYdvR6o7GrX'; // Twój Page access token
+const PAGE_ACCESS_TOKEN = 'EAAcZC0M1Au8oBAFh6MrynzSFtdh8haDI3ThCq7bbl6GZAfH1LgREB7cUqSN9npTAscHRVe1zdCoUXOGUrNKlMTWSkUmJnlZBaMdbQ0IB6dVbE0mbZCLSBVAAFv7gnNK1l5I3UxZBkpc4x6ZCIT7BwStN5jgGPe2NN5uHN8N6Dz6iFPZBz7JBZBKw'; // Twój Page access token
 
 // Ustawienie parsera dla danych zapytania
 app.use(json());
@@ -20,8 +20,7 @@ app.post('/webhook', (req: Request, res: Response) => {
       const webhookEvent = entry.messaging[0];
       console.log(webhookEvent);
       console.log("huj body webhook")
-      kła()
-
+    
       // Obsługa przychodzących zdarzeń z Facebook Messenger
       if (webhookEvent.message) {
         console.log("3232332")
