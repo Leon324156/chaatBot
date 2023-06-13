@@ -29,19 +29,17 @@ app.post('/webhook', (req: Request, res: Response) => {
           // Ignoruj echo (wiadomości wysłane przez samego bota)
           return;
         }
-        if (webhookEvent.message.sequence === 1) {
-          sendMessage(senderId, 'Siemanko',PAGE_ACCESS_TOKEN);
-          return;
-        }
-        
+
+        sendMessage(senderId, 'Siemanko', PAGE_ACCESS_TOKEN);
         // Tutaj możesz implementować logikę obsługi wiadomości, przycisków itp.
+        console.log('Otrzymano wiadomość:', messageText);
       }
     });
-
-    res.status(200).send('EVENT_RECEIVED');
   } else {
     res.sendStatus(404);
   }
+
+  res.status(200).send('EVENT_RECEIVED');
 });
 
 
