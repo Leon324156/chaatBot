@@ -27,7 +27,7 @@ app.post('/webhook', (req, res) => {
 });
 // Endpoint weryfikacyjny
 app.get('/webhook', (req, res) => {
-    const VERIFY_TOKEN = 'twój_token_weryfikacyjny';
+    const VERIFY_TOKEN = '69420';
     const mode = req.query['hub.mode'];
     const token = req.query['hub.verify_token'];
     const challenge = req.query['hub.challenge'];
