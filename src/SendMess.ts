@@ -25,7 +25,7 @@ export async function sendMessage(recipientId: string, messageText: string, PAGE
     };
 
     // Wyślij zapytanie POST do Messenger API
-    const response = await axios.post('https://graph.facebook.com/v14.0/me/messages', requestBody, requestConfig);
+    const response = await axios.post('https://graph.facebook.com/v17.0/me/messages', requestBody, requestConfig);
     console.log('Message sent successfully:', response.data);
   } catch (error) {
     console.error('Error sending message:');
