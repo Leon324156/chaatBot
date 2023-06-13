@@ -22,7 +22,7 @@ export function sendMessage(recipientId: string, messageText: string, PAGE_ACCES
       text: messageText,
     },
   };
-
+    console.log("czy wchodzi do sendMess")
   // Wyślij zapytanie POST do Messenger API
   axios
     .post('https://graph.facebook.com/v14.0/me/messages', requestBody, requestConfig)
