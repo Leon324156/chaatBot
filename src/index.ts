@@ -3,11 +3,12 @@ import { json } from 'body-parser';
 
 const app = express();
 const PORT = 3000;
+const VERIFY_TOKEN = '69420'; // Update with your verify token
 
-// Ustawienie parsera dla danych zapytania
+// Set up body parser middleware
 app.use(json());
 
-// Endpoint do obsługi webhooka
+// Webhook endpoint
 app.post('/webhook', (req: Request, res: Response) => {
   const body = req.body;
 
@@ -15,8 +16,8 @@ app.post('/webhook', (req: Request, res: Response) => {
     body.entry.forEach((entry: any) => {
       const webhookEvent = entry.messaging[0];
       console.log(webhookEvent);
-      // Obsługa przychodzących zdarzeń z Facebook Messenger
-      // Tutaj możesz implementować logikę obsługi wiadomości, przycisków itp.
+      // Handle incoming events from Facebook Messenger
+      // Implement your message handling logic, buttons, etc. here
     });
 
     res.status(200).send('EVENT_RECEIVED');
@@ -25,26 +26,21 @@ app.post('/webhook', (req: Request, res: Response) => {
   }
 });
 
-// Endpoint weryfikacyjny
+// Verification endpoint
 app.get('/webhook', (req: Request, res: Response) => {
-  const VERIFY_TOKEN = '14032001';
-  
   const mode = req.query['hub.mode'];
   const token = req.query['hub.verify_token'];
   const challenge = req.query['hub.challenge'];
 
-  if (mode && token) {
-    if (mode === 'subscribe' && token === VERIFY_TOKEN) {
-      console.log('Weryfikacja pomyślna!');
-      res.status(200).send(challenge);
-    } else {
-      res.sendStatus(403);
-    }
+  if (mode === 'subscribe' && token === VERIFY_TOKEN) {
+    console.log('Verification successful!');
+    res.status(200).send(challenge);
+  } else {
+    res.sendStatus(403);
   }
 });
 
-// Uruchomienie serwera
+// Start the server
 app.listen(PORT, () => {
-  console.log(`Serwer uruchomiony na porcie ${PORT}`);
-  console.log("test");
+  console.log(`Server is running on port ${PORT}`);
 });
