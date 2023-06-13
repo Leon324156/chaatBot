@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import { json } from 'body-parser';
 import { kła, sendMessage } from './SendMess';
+import axios from 'axios';
 
 const app = express();
 const PORT = 3000;
@@ -33,7 +34,7 @@ app.post('/webhook', (req: Request, res: Response) => {
           return;
         }
 
-        sendMessage(senderId, 'Siemanko', PAGE_ACCESS_TOKEN);
+        senddMessage(senderId, 'Siemanko', PAGE_ACCESS_TOKEN);
         // Tutaj możesz implementować logikę obsługi wiadomości, przycisków itp.
         console.log('Otrzymano wiadomość:', messageText);
       }
@@ -63,3 +64,37 @@ app.get('/webhook', (req: Request, res: Response) => {
 app.listen(PORT, () => {
   console.log(`Serwer uruchomiony na porcie ${PORT}`);
 });
+
+
+
+function senddMessage(recipientId: string, messageText: string, PAGE_ACCESS_TOKEN: string) {
+  // Konstruuj zapytanie API do wysłania wiadomości
+  const requestConfig = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    params: {
+      access_token: PAGE_ACCESS_TOKEN,
+    },
+  };
+
+  const requestBody = {
+    messaging_type: 'RESPONSE',
+    recipient: {
+      id: recipientId,
+    },
+    message: {
+      text: messageText,
+    },
+  };
+    console.log("czy wchodzi do sendMess")
+  // Wyślij zapytanie POST do Messenger API
+  axios
+    .post('https://graph.facebook.com/v14.0/me/messages', requestBody, requestConfig)
+    .then((response) => {
+      console.log('Message sent successfully:', response.data);
+    })
+    .catch((error) => {
+      console.error('Error sending message:', error.response.data);
+    });
+}
