@@ -18,9 +18,11 @@ app.post('/webhook', (req: Request, res: Response) => {
     body.entry.forEach((entry: any) => {
       const webhookEvent = entry.messaging[0];
       console.log(webhookEvent);
+      console.log("huj body webhook")
 
       // Obsługa przychodzących zdarzeń z Facebook Messenger
       if (webhookEvent.message) {
+        console.log("3232332")
         const senderId = webhookEvent.sender.id;
         const messageText = webhookEvent.message.text;
 
