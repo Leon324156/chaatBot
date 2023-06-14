@@ -23,18 +23,15 @@ app.post('/webhook', (req: Request, res: Response) => {
     
       
       if (webhookEvent.message) {
-        console.log("3232332")
         const senderId = webhookEvent.sender.id;
         const messageText = webhookEvent.message.text;
-
-       
-        if (webhookEvent.message.is_echo) {
       
+        if (webhookEvent.message.is_echo) {
           return;
         }
-
+      
         sendMessage(senderId, 'Siemanko', PAGE_ACCESS_TOKEN);
-  
+      
         console.log('Otrzymano wiadomość:', messageText);
       }
     });

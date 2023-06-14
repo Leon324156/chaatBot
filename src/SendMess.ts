@@ -33,7 +33,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 export const sendMessage = async (senderId: string, message: string,token: string): Promise<number> => {
   const options: AxiosRequestConfig = {
     method: 'POST',
-    url: `https://graph.facebook.com/v11.0/118138851298938}/messages`,
+    url: `https://graph.facebook.com/v11.0/118138851298938/messages`,
     params: {
       access_token: token,
       recipient: JSON.stringify({ 'id': senderId }),
