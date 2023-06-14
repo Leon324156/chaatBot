@@ -7,7 +7,7 @@ import axios from 'axios';
 const app = express();
 const PORT = 3000;
 const VERIFY_TOKEN = '69420'; 
-const PAGE_ACCESS_TOKEN = 'EAAcZC0M1Au8oBABDwFpYSAG1DQV9o4Roxs0TRQJpLMGNSHnZC6PTucZBLjuag4Do1jxJbcxUblPZBfWGD5llJ5I1kahQTykXn1bstwdSJZC71yC2Q7YUlmsrEfZCj0LhZAEOZCRq059wp1Gswt8iJK6JtwOtswj5RNqaJi4ZBpe3KUJ4OfgZCAyLoS'; // Twój Page access token
+const PAGE_ACCESS_TOKEN = 'EAAcZC0M1Au8oBAG9SqYzUuep2YJcxWxNcCJW4bZBXuEzWb9neS7PgziRTBIfn7gJeil6ua7om6yevyC4EmV6gYgtH7HYZAIRwPtXIGFJfzKkPVQ0K22kdGp5r7FcH8ROIu4xhhOVMA97fv9hU9420qaFVn0X3MiQB9j0Pd2gHjlgZCOpXtgV'; // Twój Page access token
 
 
 app.use(json());
