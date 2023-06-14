@@ -1,13 +1,13 @@
 import express, { Request, Response } from 'express';
 import { json } from 'body-parser';
-import { sendMessage } from './SendMess';
+import { sendMessage, senddMessage } from './SendMess';
 import axios from 'axios';
 
 
 const app = express();
 const PORT = 3000;
-const VERIFY_TOKEN = '69420'; 
-const PAGE_ACCESS_TOKEN = 'EAAcZC0M1Au8oBAP1WkfHDHlYIexi0J0MAFIuZBNgCY9QYCDTBirlkpvL6Xc4yaKrOmZB2GG9ix6Tz34Tlqms9X0T1pVqV5efC3ekRovGZAR3e4SqAED7VyONUSgDYbyiFV36JV7wVaME2ZA1NpeIh5AlzJertioN59hcJHYQKT6D8d2kknu7o'; // Twój Page access token
+const VERIFY_TOKEN = process.env.VERIFY_TOKEN ||''
+const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN || '' // Twój Page access token
 
 
 app.use(json());
@@ -32,6 +32,7 @@ app.post('/webhook', (req: Request, res: Response) => {
         }
           console.log(PAGE_ACCESS_TOKEN,senderId,"token i ID");
           sendMessage(senderId, "siemanko", PAGE_ACCESS_TOKEN);
+          senddMessage(senderId, "siemanko", PAGE_ACCESS_TOKEN)
       
         console.log('Otrzymano wiadomość:', messageText);
       }
