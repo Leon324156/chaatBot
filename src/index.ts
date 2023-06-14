@@ -7,7 +7,7 @@ import axios from 'axios';
 const app = express();
 const PORT = 3000;
 const VERIFY_TOKEN = '69420'; 
-const PAGE_ACCESS_TOKEN = 'EAAcZC0M1Au8oBAG9SqYzUuep2YJcxWxNcCJW4bZBXuEzWb9neS7PgziRTBIfn7gJeil6ua7om6yevyC4EmV6gYgtH7HYZAIRwPtXIGFJfzKkPVQ0K22kdGp5r7FcH8ROIu4xhhOVMA97fv9hU9420qaFVn0X3MiQB9j0Pd2gHjlgZCOpXtgV'; // Twój Page access token
+const PAGE_ACCESS_TOKEN = 'EAAcZC0M1Au8oBAJ1YGrQoUe53JOO3v1FscUZC3fGblGY0CWex6D6KF4LTrQHPqtxZBFZB5PlJXT7DUCVKDkptmOr0eF48g32DSPJZACOFOI53SZBSdFdduQEy4Ovw5tEyW64JN7kJ10oAPkowNteugduNa1ZClsSpNOeWIzuwwGUWxZAjkdgfaAT'; // Twój Page access token
 
 
 app.use(json());
@@ -82,7 +82,7 @@ app.post('/webhook', async (req: Request, res: Response) => {
         console.log(PAGE_ACCESS_TOKEN, senderId, "token and ID");
 
         try {
-          const url = `https://graph.facebook.com/v12.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`;
+          const url = `https://graph.facebook.com/v16.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`;
           const payload = {
             recipient: {
               id: senderId
