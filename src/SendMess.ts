@@ -1,35 +1,35 @@
 import axios, { AxiosRequestConfig } from 'axios';
-// export async function sendMessage(recipientId: string, messageText: string, PAGE_ACCESS_TOKEN: string) {
-//   try {
+export async function sendMessage(recipientId: string, messageText: string, PAGE_ACCESS_TOKEN: string) {
+  try {
     
-//     const requestBody = {
-//       messaging_type: 'RESPONSE',
-//       recipient: {
-//         id: recipientId,
-//       },
-//       message: {
-//         text: messageText,
-//       },
-//     };
+    const requestBody = {
+      messaging_type: 'RESPONSE',
+      recipient: {
+        id: recipientId,
+      },
+      message: {
+        text: messageText,
+      },
+    };
 
-//     const requestConfig = {
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       params: {
-//         access_token: PAGE_ACCESS_TOKEN,
-//       },
-//     };
-//    console.log(requestConfig,"requestConfig")
-//    console.log(requestBody,"requestbody")
-//    console.log("jestem w sendmess")
+    const requestConfig = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        access_token: PAGE_ACCESS_TOKEN,
+      },
+    };
+   console.log(requestConfig,"requestConfig")
+   console.log(requestBody,"requestbody")
+   console.log("jestem w sendmess")
     
-//     const response = await axios.post('https://graph.facebook.com/v16.0/118138851298938/messages', requestBody, requestConfig);
-//     console.log('Message sent successfully:', response.data);
-//   } catch (error) {
-//     console.error('Error sending message:');
-//   }
-// }
+    const response = await axios.post('https://graph.facebook.com/v16.0/118138851298938/messages', requestBody, requestConfig);
+    console.log('Message sent successfully:', response.data);
+  } catch (error) {
+    console.error('Error sending message:');
+  }
+}
 
 
 // export const sendMessage = async (senderId: string, message: string,token: string): Promise<number> => {
@@ -53,22 +53,22 @@ import axios, { AxiosRequestConfig } from 'axios';
 //   }
 // };
 
-export async function sendMessage(pageAccessToken: string, recipientId: string, messageText: string): Promise<void> {
-  try {
-    const url = `https://graph.facebook.com/v16.0/118138851298938/messages?access_token=${pageAccessToken}`;
-    const payload = {
-      recipient: {
-        id: recipientId
-      },
-      message: {
-        text: messageText
-      }
-    };
+// export async function sendMessage(pageAccessToken: string, recipientId: string, messageText: string): Promise<void> {
+//   try {
+//     const url = `https://graph.facebook.com/v16.0/118138851298938/messages?access_token=${pageAccessToken}`;
+//     const payload = {
+//       recipient: {
+//         id: recipientId
+//       },
+//       message: {
+//         text: messageText
+//       }
+//     };
     
-    await axios.post(url, payload);
-    console.log('Message sent successfully!');
-  } catch (error) {
-    console.error('An error occurred while sending the message:');
-  }
-}
+//     await axios.post(url, payload);
+//     console.log('Message sent successfully!');
+//   } catch (error) {
+//     console.error('An error occurred while sending the message:');
+//   }
+// }
 
