@@ -6,7 +6,7 @@ import { sendMessage } from './SendMess';
 const app = express();
 const PORT = 3000;
 const VERIFY_TOKEN = '69420'; 
-const PAGE_ACCESS_TOKEN = 'EAAcZC0M1Au8oBALmhlpbUP5WVENncaxOIO02hBmlSS1w5YOUuGMU75c675pOf6gdZAIf1G1T1DZCLcjYZAz8VQKlSb76nZBWzwepU8EIyaVf1FvI0ZBn0ytZBgtGaGXHHhUACqLqPV3G08FOZApRXRUdERicpCu4IA6nx3IcLfMbmcyJtNGvnhJQ'; // Twój Page access token
+const PAGE_ACCESS_TOKEN = 'EAAcZC0M1Au8oBAHO1AIoNSialpOKcfaXl2bnP0lDA3OGoZBJZAucIzY9EocqzJ6jDL3h9ZAQDDEr8isi9TUKeJFFmXtyeTxS57Y9XwLwf5dYi0EVPRTv5UdPD0pPySZBUnwWHLQNRVliflpfpqhoPbI7RboeocvhIwCu5RZBrDzQ62zwlnJi8f'; // Twój Page access token
 
 
 app.use(json());
