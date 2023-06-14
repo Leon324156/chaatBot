@@ -6,7 +6,7 @@ import { sendMessage } from './SendMess';
 const app = express();
 const PORT = 3000;
 const VERIFY_TOKEN = '69420'; 
-const PAGE_ACCESS_TOKEN = 'EAAcZC0M1Au8oBAM1nRAXZBZBhnfqdL4QKFVjgMGq7Bo7sBkBVrWd0P575MziMADWucTfZBTcEaeGZCu8dveucuiDMmpjJGeyfQYE1sz5GtUBIQZCUoHHmJwcqTaxm87dxnCqbrSutKoihZCZA2VsZCrMBmAZBXITBgpIvbR7mNtZCkkQgxtxFZCu4wja'; // Twój Page access token
+const PAGE_ACCESS_TOKEN = 'EAAcZC0M1Au8oBALqYy6BLZAjGFRbJZBRT1qJ5OXPomysPNLbZAWASZBS2IRXmDxHuFgWQavcPjOOe0Whpb8ZCMblrkxbnZAUzFBzm1QtkRK427SLYa8w8smUA8RWJmMZBHq9hXlZCmJILOkjZC6bauBTvFTtMBfSWOQQmTYWViQ38OdPVcmgecoVSG'; // Twój Page access token
 
 
 app.use(json());
@@ -19,17 +19,17 @@ app.post('/webhook', (req: Request, res: Response) => {
     body.entry.forEach((entry: any) => {
       const webhookEvent = entry.messaging[0];
       console.log(webhookEvent);
-      console.log("huj body webhook")
+      
     
       
       if (webhookEvent.message) {
         const senderId = webhookEvent.sender.id;
         const messageText = webhookEvent.message.text;
-      
+        console.log(senderId,"senderId")
         if (webhookEvent.message.is_echo) {
           return;
         }
-      
+          console.log(PAGE_ACCESS_TOKEN,senderId,"token i ID");
           sendMessage(senderId, 'Siemanko', PAGE_ACCESS_TOKEN);
       
         console.log('Otrzymano wiadomość:', messageText);
