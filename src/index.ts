@@ -30,7 +30,7 @@ app.post('/webhook', (req: Request, res: Response) => {
           return;
         }
       
-        sendMessage(senderId, 'Siemanko', PAGE_ACCESS_TOKEN);
+          sendMessage(senderId, 'Siemanko', PAGE_ACCESS_TOKEN);
       
         console.log('Otrzymano wiadomość:', messageText);
       }
