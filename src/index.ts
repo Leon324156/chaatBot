@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import { json } from 'body-parser';
-import { sendMessage, senddMessage } from './SendMess';
+import { sendMessage } from './SendMess';
 import axios from 'axios';
 
 
@@ -32,7 +32,7 @@ app.post('/webhook', (req: Request, res: Response) => {
         }
           console.log(PAGE_ACCESS_TOKEN,senderId,"token i ID");
           sendMessage(senderId, "siemanko", PAGE_ACCESS_TOKEN);
-          senddMessage(senderId, "siemanko", PAGE_ACCESS_TOKEN)
+          
       
         console.log('Otrzymano wiadomość:', messageText);
       }
