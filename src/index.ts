@@ -1,28 +1,35 @@
 import express, { Request, Response } from 'express';
 import { json } from 'body-parser';
 import { sendMessage } from './SendMess';
-import axios from 'axios';
+import { ChatGPTHelper } from './GPT';
+
+
+
 
 
 const app = express();
 const PORT = 3000;
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN ||''
-const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN || '' // Twój Page access token
+const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN || ''
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+if (!OPENAI_API_KEY) {
+  console.error("OPENAI_API_KEY is not defined in the environment variables.");
+  process.exit(1); 
+}
 
 
 app.use(json());
 
+const chatGPTHelper = new ChatGPTHelper(OPENAI_API_KEY);
 
-app.post('/webhook', (req: Request, res: Response) => {
+app.post('/webhook', async (req: Request, res: Response) => { // zauważ, że dodaliśmy 'async'
   const body = req.body;
 
   if (body.object === 'page') {
-    body.entry.forEach((entry: any) => {
+    body.entry.forEach(async (entry: any) => { // zauważ, że dodaliśmy 'async'
       const webhookEvent = entry.messaging[0];
       console.log(webhookEvent);
-      
-    
-      
+
       if (webhookEvent.message) {
         const senderId = webhookEvent.sender.id;
         const messageText = webhookEvent.message.text;
@@ -30,9 +37,17 @@ app.post('/webhook', (req: Request, res: Response) => {
         if (webhookEvent.message.is_echo) {
           return;
         }
-          console.log(PAGE_ACCESS_TOKEN,senderId,"token i ID");
-          sendMessage(senderId, "siemanko", PAGE_ACCESS_TOKEN);
+        console.log(PAGE_ACCESS_TOKEN,senderId,"token i ID");
+
+        try {
           
+          const gptResponse = await chatGPTHelper.getChatResponse(messageText);
+         
+          sendMessage(senderId, gptResponse, PAGE_ACCESS_TOKEN);
+        } catch (error) {
+          console.error('Wystąpił błąd podczas generowania odpowiedzi:', error);
+          sendMessage(senderId, "Wystąpił błąd panie kolego", PAGE_ACCESS_TOKEN);
+        }
       
         console.log('Otrzymano wiadomość:', messageText);
       }
@@ -43,7 +58,6 @@ app.post('/webhook', (req: Request, res: Response) => {
 
   res.status(200).send('EVENT_RECEIVED');
 });
-
 
 
 app.get('/webhook', (req: Request, res: Response) => {
