@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import { json } from 'body-parser';
 import { sendMessage } from './SendMess';
-import { ChatGPTHelper } from './GPT';
+import { getGpt3Response } from './GPT';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,7 +16,7 @@ if (!OPENAI_API_KEY) {
 
 app.use(json());
 
-const chatGPTHelper = new ChatGPTHelper(OPENAI_API_KEY);
+// const chatGPTHelper = new ChatGPTHelper(OPENAI_API_KEY);
 
 app.post('/webhook', async (req: Request, res: Response) => { // zauważ, że dodaliśmy 'async'
   const body = req.body;
@@ -36,14 +36,13 @@ app.post('/webhook', async (req: Request, res: Response) => { // zauważ, że do
        
 
         try {
-          
-          const gptResponse = await chatGPTHelper.getChatResponse(messageText);
+          const gptResponse = await getGpt3Response(messageText, OPENAI_API_KEY);
           console.log(gptResponse,"gptResponse")
           sendMessage(senderId, gptResponse, PAGE_ACCESS_TOKEN);
         } catch (error) {
           sendMessage(senderId, "Wystąpił błąd panie kolego", PAGE_ACCESS_TOKEN);
         }
-      
+        
         console.log('Otrzymano wiadomość:', messageText);
       }
     });
