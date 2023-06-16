@@ -34,8 +34,9 @@ app.post('/webhook', async (req: Request, res: Response) => { // zauważ, że do
           return;
         }
        
-
+    console.log("próbujemy")
         try {
+          console.log("czy wchodzi do try")
           const gptResponse = await getGpt3Response(messageText, OPENAI_API_KEY);
           console.log(gptResponse,"gptResponse")
           sendMessage(senderId, gptResponse, PAGE_ACCESS_TOKEN);

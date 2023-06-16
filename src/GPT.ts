@@ -55,7 +55,7 @@ export async function getGpt3Response(message:string,OPENAI_API_KEY:string) {
           Authorization: `Bearer ${OPENAI_API_KEY}`,
       },
   };
-
+  console.log("FUNKCJA PRZED TRY (()**)")
   try {
       const response = await axios.post(apiUrl, requestBody, requestConfig);
       const responseData = response.data;
