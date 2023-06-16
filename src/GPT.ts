@@ -5,7 +5,7 @@ export class ChatGPTHelper {
   private apiUrl: string;
 
   constructor(apiKey: string) {
-    this.apiKey = process.env.apiKey || ''
+    this.apiKey = apiKey || '';
     this.apiUrl = 'https://api.openai.com/v1/chat/completions';
   }
 

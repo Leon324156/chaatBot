@@ -29,11 +29,11 @@ app.post('/webhook', async (req: Request, res: Response) => { // zauważ, że do
       if (webhookEvent.message) {
         const senderId = webhookEvent.sender.id;
         const messageText = webhookEvent.message.text;
-        console.log(senderId,"senderId")
+        
         if (webhookEvent.message.is_echo) {
           return;
         }
-        console.log(PAGE_ACCESS_TOKEN,senderId,"token i ID");
+       
 
         try {
           
@@ -41,7 +41,6 @@ app.post('/webhook', async (req: Request, res: Response) => { // zauważ, że do
           console.log(gptResponse,"gptResponse")
           sendMessage(senderId, gptResponse, PAGE_ACCESS_TOKEN);
         } catch (error) {
-          console.error('Wystąpił błąd podczas generowania odpowiedzi:', error);
           sendMessage(senderId, "Wystąpił błąd panie kolego", PAGE_ACCESS_TOKEN);
         }
       

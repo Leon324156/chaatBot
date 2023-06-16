@@ -20,10 +20,7 @@ export async function sendMessage(recipientId: string, messageText: string, PAGE
         access_token: PAGE_ACCESS_TOKEN,
       },
     };
-   console.log(requestConfig,"requestConfig")
-   console.log(requestBody,"requestbody")
-   console.log("jestem w sendmess")
-    
+   
     const response = await axios.post('https://graph.facebook.com/v16.0/118138851298938/messages', requestBody, requestConfig);
     console.log('Message sent successfully:', response.data);
   } catch (error) {
