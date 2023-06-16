@@ -38,7 +38,7 @@ app.post('/webhook', async (req: Request, res: Response) => { // zauważ, że do
         try {
           
           const gptResponse = await chatGPTHelper.getChatResponse(messageText);
-         
+          console.log(gptResponse,"gptResponse")
           sendMessage(senderId, gptResponse, PAGE_ACCESS_TOKEN);
         } catch (error) {
           console.error('Wystąpił błąd podczas generowania odpowiedzi:', error);
