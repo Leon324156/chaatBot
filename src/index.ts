@@ -3,12 +3,8 @@ import { json } from 'body-parser';
 import { sendMessage } from './SendMess';
 import { ChatGPTHelper } from './GPT';
 
-
-
-
-
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN ||''
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN || ''
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
