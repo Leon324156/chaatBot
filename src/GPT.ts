@@ -43,11 +43,12 @@ export async function getGpt3Response(message:string,OPENAI_API_KEY:string) {
   const apiUrl = 'https://api.openai.com/v1/chat/completions';
 
   const requestBody = {
-      messages: [
-          { role: 'system', content: 'You are a helpful assistant.' },
-          { role: 'user', content: message }
-      ],
-  };
+    model: 'gpt-3.5-turbo', 
+    messages: [
+        { role: 'system', content: 'You are a helpful assistant.' },
+        { role: 'user', content: message }
+    ],
+};
 
   const requestConfig = {
       headers: {
@@ -71,3 +72,4 @@ export async function getGpt3Response(message:string,OPENAI_API_KEY:string) {
       throw error;
   }
 }
+
