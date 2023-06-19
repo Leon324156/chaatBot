@@ -2,17 +2,31 @@ import express, { Request, Response } from 'express';
 import { json } from 'body-parser';
 import { sendMessage } from './SendMess';
 import { ChatGPTHelper } from './GPT';
+import { checkEnvironmentVariable } from './IndexHelper';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const VERIFY_TOKEN = process.env.VERIFY_TOKEN ||''
+if (!PORT) {
+  console.error("PORT is not defined in the environment variables.");
+  process.exit(1); 
+}
+const VERIFY_TOKEN = checkEnvironmentVariable("VERIFY_TOKEN","Verify token is not defined in the environment variables.")
+
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN || ''
+if (!PAGE_ACCESS_TOKEN) {
+  console.error("Page acces token is not defined in the environment variables.");
+  process.exit(1); 
+}
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 if (!OPENAI_API_KEY) {
   console.error("OPENAI_API_KEY is not defined in the environment variables.");
   process.exit(1); 
 }
-
+const Pageid = process.env.PAGEID || '';
+if (!Pageid) {
+  console.error("Page ID is not defined in the environment variables.");
+  process.exit(1); 
+}
 
 app.use(json());
 
@@ -37,9 +51,9 @@ app.post('/webhook', async (req: Request, res: Response) => {
     
         try {
           const gptResponse = await chatGPTHelper.getChatResponse(messageText);
-          sendMessage(senderId, gptResponse, PAGE_ACCESS_TOKEN);
+          sendMessage(senderId, gptResponse, PAGE_ACCESS_TOKEN,Pageid);
         } catch (error) {
-          sendMessage(senderId, "Wystąpił błąd panie kolego", PAGE_ACCESS_TOKEN);
+          sendMessage(senderId, "Wystąpił błąd panie kolego", PAGE_ACCESS_TOKEN,Pageid);
         }
         
       }

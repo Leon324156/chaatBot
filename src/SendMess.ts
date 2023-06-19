@@ -1,5 +1,5 @@
 import axios from 'axios';
-export async function sendMessage(recipientId: string, messageText: string, PAGE_ACCESS_TOKEN: string ) {
+export async function sendMessage(recipientId: string, messageText: string, PAGE_ACCESS_TOKEN: string,pageid:string ) {
   try {
     
     const requestBody = {
@@ -21,7 +21,7 @@ export async function sendMessage(recipientId: string, messageText: string, PAGE
       },
     };
    
-    const response = await axios.post('https://graph.facebook.com/v16.0/118138851298938/messages', requestBody, requestConfig);
+    const response = await axios.post(`https://graph.facebook.com/v16.0/${pageid}/messages`, requestBody, requestConfig);
     console.log('Message sent successfully:', response.data);
   } catch (error) {
     console.error('Error sending message:', error)
