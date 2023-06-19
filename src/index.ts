@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import { json } from 'body-parser';
 import { sendMessage } from './SendMess';
 import { ChatGPTHelper } from './GPT';
-import { checkEnvironmentVariable } from './IndexHelper';
+import { checkEnvironmentVariable } from './VariableHelper';
 
 const app = express();
 const PORT = checkEnvironmentVariable("PORT","PORT is not defined in the environment variables.")
@@ -30,24 +30,23 @@ app.post('/webhook', async (req: Request, res: Response) => {
         if (webhookEvent.message.is_echo) {
           return;
         }
-       
     
         try {
           const gptResponse = await chatGPTHelper.getChatResponse(messageText);
           sendMessage(senderId, gptResponse, PAGE_ACCESS_TOKEN,Pageid);
         } catch (error) {
-          sendMessage(senderId, "Wystąpił błąd panie kolego", PAGE_ACCESS_TOKEN,Pageid);
+          sendMessage(senderId, "Wystąpił błąd w przetwarzaniu wiadomości", PAGE_ACCESS_TOKEN,Pageid);
         }
         
       }
     });
+
   } else {
     res.sendStatus(404);
   }
 
   res.status(200).send('EVENT_RECEIVED');
 });
-
 
 app.get('/webhook', (req: Request, res: Response) => {
   const mode = req.query['hub.mode'];
@@ -65,9 +64,3 @@ app.get('/webhook', (req: Request, res: Response) => {
 app.listen(PORT, () => {
   console.log(`Serwer uruchomiony na porcie ${PORT}`);
 });
-
-
-
-
-
-
