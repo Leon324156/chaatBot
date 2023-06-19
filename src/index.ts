@@ -5,15 +5,11 @@ import { ChatGPTHelper } from './GPT';
 import { checkEnvironmentVariable } from './IndexHelper';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-if (!PORT) {
-  console.error("PORT is not defined in the environment variables.");
-  process.exit(1); 
-}
+const PORT = checkEnvironmentVariable("PORT","PORT is not defined in the environment variables.")
 const VERIFY_TOKEN = checkEnvironmentVariable("VERIFY_TOKEN","Verify token is not defined in the environment variables.")
 const PAGE_ACCESS_TOKEN = checkEnvironmentVariable("PAGE_ACCESS_TOKEN","Page acces token is not defined in the environment variables.")
 const OPENAI_API_KEY = checkEnvironmentVariable("OPENAI_API_KEY","OPENAI_API_KEY is not defined in the environment variables.")
-const Pageid = checkEnvironmentVariable("Pageid","Page ID is not defined in the environment variables.")
+const Pageid = checkEnvironmentVariable("PAGEID","Page ID is not defined in the environment variables.")
 
 app.use(json());
 
