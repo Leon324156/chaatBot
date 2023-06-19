@@ -13,7 +13,7 @@ export class ChatGPTHelper {
     try {
 
   const requestBody = {
-    model: 'gpt-4.0-turbo', 
+    model: 'gpt-3.5-turbo', 
     messages: [
         { role: 'system', content: 'You are a helpful assistant.' },
         { role: 'user', content: message }
